@@ -11,7 +11,16 @@ services:
     depends_on:
       - server
 
+    deploy:
+      mode: replicated
+      replicas: 1
+
   server:
+    image: server
     build: ./server
     # image: user/image-name ## You can also provide an image here
     restart: unless-stopped
+    
+    deploy:
+      mode: replicated
+      replicas: 2
